@@ -32,6 +32,17 @@ app.get('/doctors', (req, res) => {
   }).sort({ _id: - 1 })
 })
 
+
+app.get('/doctors/:id', (req, res) => {
+  let db = req.db
+  Doctor.findById(req.params.id, 'name email crfa status', (err, doctor) => {
+    if(err)
+      throw err
+
+    res.send(doctor)
+  })
+})
+
 app.post('/doctors', (req, res) => {
   let db = req.db
   let name = req.body.name
@@ -52,6 +63,40 @@ app.post('/doctors', (req, res) => {
     res.send({
       success: true,
       message: 'Doctor saved successfully!'
+    })
+  })
+})
+
+app.put('/doctors/:id', (req, res) => {
+  let db = req.db
+  Doctor.findById(req.params.id, 'name email crfa status', (err, doctor) => {
+    if(err)
+      throw err
+
+    doctor.name = req.body.name
+    doctor.crfa = req.body.crfa
+    doctor.email = req.body.email
+    doctor.status = req.body.status
+
+    doctor.save((err) => {
+      if(err)
+        throw err
+
+      res.send({
+        success: true
+      })
+    })
+  })
+})
+
+app.delete('/doctors/:id', (req, res) => {
+  let db = req.db
+  Doctor.remove({ _id: req.params.id }, (err, doctor) => {
+    if(err)
+      throw err
+
+    res.send({
+      success: true
     })
   })
 })

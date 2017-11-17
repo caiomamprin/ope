@@ -3,7 +3,7 @@
     <h1>Doutores(as)</h1>
     <div v-if="doctors.length > 0" class="table-wrap">
       <div>
-        <router-link v-bind:to="{ name: 'NewDoctor' }">Salvar</router-link>
+        <router-link v-bind:to="{ name: 'NewDoctor' }">Cadastrar Doutor(a)</router-link>
       </div>
       <table>
         <tr>
@@ -22,7 +22,7 @@
           <td>{{ doctor.status ? 'Ativo' : 'Inativo' }}</td>
           <td>
             <router-link v-bind:to="{ name: 'EditDoctor', params: { id: doctor._id } }">Alterar</router-link> |
-            <a href="#">Excluir</a>
+            <a href="#" @click="deleteDoctor(doctor._id)">Excluir</a>
           </td>
         </tr>
       </table>
@@ -30,7 +30,7 @@
 
     <div v-else>
       Não há doutoras cadastradas<br /><br />
-      <router-link v-bind:to="{ name: 'NewDoctor' }" class="btn">Cadastrar Doutora</router-link>
+      <router-link v-bind:to="{ name: 'NewDoctor' }" class="btn">Cadastrar Doutor(a)</router-link>
     </div>
   </div>
 </template>
@@ -52,6 +52,10 @@ export default {
     async getDoctors () {
       const response = await DoctorsService.fetchDoctors()
       this.doctors = response.data.doctors
+    },
+    async deleteDoctor (id) {
+      await DoctorsService.deleteDoctor(id)
+      this.$router.push({ name: 'Doctors' })
     }
   }
 }
@@ -59,9 +63,12 @@ export default {
 
 <style>
 .table-wrap {
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
   text-align: center;
+}
+.table-wrap table {
+  margin: 0 auto;
 }
 table th, table tr {
   text-align: left;

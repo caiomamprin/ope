@@ -1,18 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import Doctors from '@/components/Doctors'
 import NewDoctor from '@/components/NewDoctor'
+import EditDoctor from '@/components/EditDoctor'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
     {
       path: '/doctors',
       name: 'Doctors',
@@ -22,6 +18,11 @@ export default new Router({
       path: '/doctors/new',
       name: 'NewDoctor',
       component: NewDoctor
+    },
+    {
+      path: '/doctors/:id',
+      name: 'EditDoctor',
+      component: EditDoctor
     }
   ]
 })
