@@ -7,8 +7,11 @@ import EditDoctor from '@/components/EditDoctor'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
   routes: [
+    {
+      path: '/',
+      redirect: '/doctors'
+    },
     {
       path: '/doctors',
       name: 'Doctors',

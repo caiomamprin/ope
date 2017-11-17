@@ -39,7 +39,7 @@
 import DoctorsService from '@/services/DoctorsService.js'
 
 export default {
-  name: 'doctors',
+  name: 'Doctors',
   data () {
     return {
       doctors: []
@@ -54,8 +54,22 @@ export default {
       this.doctors = response.data.doctors
     },
     async deleteDoctor (id) {
-      await DoctorsService.deleteDoctor(id)
-      this.$router.push({ name: 'Doctors' })
+      const $this = this
+      $this.$swal({
+        title: 'Tem certeza?',
+        text: 'Você não será capaz de reverter essa ação!',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Sim, excluir'
+      }).then(() => {
+        DoctorsService.deleteDoctor(id)
+        $this.$router.go({
+          path: '/'
+        })
+      })
     }
   }
 }
