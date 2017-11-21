@@ -1,0 +1,462 @@
+{
+	"info": {
+		"name": "OPE - Tests",
+		"_postman_id": "35fc5837-92f6-7f4a-9d37-b15eabf59f92",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CONVENIO",
+			"description": "",
+			"item": [
+				{
+					"name": "CADASTRAR CONVENIO",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"businessName\": \"Amil\",\r\n    \"cpnj\": \"29309127/000179\",\r\n    \"consultationFee\": \"59.90\",\r\n    \"status\": 1\r\n  }"
+						},
+						"url": {
+							"raw": "localhost:8081/healthplans/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"healthplans",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETAR CONVENIO",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/healthplans/5a134e8f312041298c6ca6a4",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"healthplans",
+								"5a134e8f312041298c6ca6a4"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ALTERAR CONVENIO",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"businessName\": \"Amil Por Hora\",\n   \"consultationFee\": \"1000.00\",\n   \"status\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8081/healthplans/5a134e8f312041298c6ca6a4",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"healthplans",
+								"5a134e8f312041298c6ca6a4"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "LISTAR CONVENIOS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8081/healthplans/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"healthplans",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DOUTOR(A)",
+			"description": "",
+			"item": [
+				{
+					"name": "ALTERAR  DOUTOR(A)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Rodolfo Dias\",\n    \"email\": \"rodolfo@ope.com\",\n    \"crfa\": \"OPE-123\",\n    \"status\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8081/doctors/5a134acef655cd04ecaf8410",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"doctors",
+								"5a134acef655cd04ecaf8410"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CADASTRAR DOUTOR(A)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Caio Rolando da Rocha\",\n\t\"email\": \"caio@ope.com\",\n\t\"crfa\": \"123-OPE\",\n\t\"status\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8081/doctors/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"doctors",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "LISTAR DOUTORES(AS)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Rodolfo Dias\",\n    \"email\": \"rodolfo@ope.com\",\n    \"crfa\": \"OPE-123\",\n    \"status\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8081/doctors/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"doctors",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETAR DOUTOR(A)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8081/doctors/5a134acef655cd04ecaf8410",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"doctors",
+								"5a134acef655cd04ecaf8410"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PACIENTE",
+			"description": "",
+			"item": [
+				{
+					"name": "LISTAR PACIENTES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8081/patients",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"patients"
+							]
+						},
+						"description": "\t"
+					},
+					"response": []
+				},
+				{
+					"name": "CADASTRAR PACIENTE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Marcus Garducci\",\n\t\"cpf\": \"25588315260\",\n\t\"birthDate\": \"07/01/1941\",\n\t\"healthplan\": \"5a1354143cf2f221307518c0\",\n\t\"status\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8081/patients",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"patients"
+							]
+						},
+						"description": "\t"
+					},
+					"response": []
+				},
+				{
+					"name": "ALTERAR PACIENTE",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Marcus Garducci\",\n    \"cpf\": \"25588315260\",\n    \"birthDate\": \"07/01/1997\",\n    \"healthplan\": \"5a1354143cf2f221307518c0\",\n    \"status\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8081/patients/5a13543e2304151fd05aeee2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"patients",
+								"5a13543e2304151fd05aeee2"
+							]
+						},
+						"description": "\t"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETAR PACIENTE",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Marcus Garducci\",\n    \"cpf\": \"25588315260\",\n    \"birthDate\": \"07/01/1997\",\n    \"healthplan\": \"5a1354143cf2f221307518c0\",\n    \"status\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8081/patients/5a13543e2304151fd05aeee2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"patients",
+								"5a13543e2304151fd05aeee2"
+							]
+						},
+						"description": "\t"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PATOLOGIA",
+			"description": "",
+			"item": [
+				{
+					"name": "LISTAR PATOLOGIAS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8081/pathologies",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"pathologies"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CADASTRAR PATOLOGIA",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cid\": \"E15\",\n\t\"description\": \"Diabetes\",\n\t\"status\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8081/pathologies",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"pathologies"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ALTERAR PATOLOGIA",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cid\": \"E15\",\n\t\"description\": \"Hipoglicemia\",\n\t\"status\": 0\n}"
+						},
+						"url": {
+							"raw": "localhost:8081/pathologies/5a136d326ef10407b48e780e",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"pathologies",
+								"5a136d326ef10407b48e780e"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETAR PATOLOGIA",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/pathologies/5a136c95dbf0ac135ce3074e",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"pathologies",
+								"5a136c95dbf0ac135ce3074e"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
