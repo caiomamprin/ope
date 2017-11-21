@@ -8,7 +8,10 @@ router.get('/', (req, res) => {
   Patient.find({}, 'name cpf birthDate healthplan status created_at updated_at', (err, patients) => {
     if(err)
       throw err
-      
+    
+    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", 0);
     res.send({
       patients: patients
     })

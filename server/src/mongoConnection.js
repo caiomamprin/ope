@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://root:IjoacsyidIcnee7@ds259855.mlab.com:59855/healthmanager')
+mongoose.connect('mongodb://localhost:27017/healthmanager')
 const db = mongoose.connection
 
 db.on('error', () => {

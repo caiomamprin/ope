@@ -8,6 +8,9 @@ router.get('/', (req, res) => {
     if(err)
       throw err
 
+    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", 0);
     res.send({
       doctors: doctors
     })
