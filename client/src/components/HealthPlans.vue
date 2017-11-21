@@ -1,59 +1,59 @@
 <template>
-  <div id="doctors">
-    <h1>Doutores(as)</h1>
-    <div v-if="doctors.length > 0" class="table-wrap">
+  <div id="healthplans">
+    <h1>Convênios</h1>
+    <div v-if="healthplans.length > 0" class="table-wrap">
       <div>
-        <router-link v-bind:to="{ name: 'NewDoctor' }">Cadastrar Doutor(a)</router-link>
+        <router-link v-bind:to="{ name: 'NewHealthPlan' }">Cadastrar Convênio</router-link>
       </div>
       <table>
         <tr>
           <td>id</td>
-          <td>nome</td>
-          <td>email</td>
-          <td>crfa</td>
+          <td>razão social</td>
+          <td>cpnj</td>
+          <td>valor da consulta</td>
           <td>status</td>
           <td>ações</td>
         </tr>
-        <tr v-for="doctor in doctors">
-          <td>{{ doctor._id }}</td>
-          <td>{{ doctor.name }}</td>
-          <td>{{ doctor.email }}</td>
-          <td>{{ doctor.crfa }}</td>
-          <td>{{ doctor.status ? 'Ativo' : 'Inativo' }}</td>
+        <tr v-for="healthplan in healthplans">
+          <td>{{ healthplan._id }}</td>
+          <td>{{ healthplan.businessName }}</td>
+          <td>{{ healthplan.cnpj }}</td>
+          <td>{{ healthplan.consultationFee }}</td>
+          <td>{{ healthplan.status ? 'Ativo' : 'Inativo' }}</td>
           <td>
-            <router-link v-bind:to="{ name: 'EditDoctor', params: { id: doctor._id } }">Alterar</router-link> |
-            <a href="#" @click="deleteDoctor(doctor._id)">Excluir</a>
+            <router-link v-bind:to="{ name: 'EditHealthPlan', params: { id: healthplan._id } }">Alterar</router-link> |
+            <a href="#" @click="deleteHealthPlan(healthplan._id)">Excluir</a>
           </td>
         </tr>
       </table>
     </div>
 
     <div v-else>
-      Não há doutores(as) cadastradas<br /><br />
-      <router-link v-bind:to="{ name: 'NewDoctor' }" class="btn">Cadastrar Doutor(a)</router-link>
+      Não há convênios cadastrados<br /><br />
+      <router-link v-bind:to="{ name: 'NewHealthPlan' }" class="btn">Cadastrar Convênio</router-link>
     </div>
   </div>
 </template>
 
 <script>
-import DoctorsService from '@/services/DoctorsService.js'
+import HealthPlansService from '@/services/HealthPlansService.js'
 
 export default {
-  name: 'Doctors',
+  name: 'HealthPlans',
   data () {
     return {
-      doctors: []
+      healthplans: []
     }
   },
   mounted () {
-    this.getDoctors()
+    this.getHealthPlans()
   },
   methods: {
-    async getDoctors () {
-      const response = await DoctorsService.fetchDoctors()
-      this.doctors = response.data.doctors
+    async getHealthPlans () {
+      const response = await HealthPlansService.fetchHealthPlans()
+      this.healthplans = response.data.healthplans
     },
-    async deleteDoctor (id) {
+    async deleteHealthPlan (id) {
       const $this = this
       $this.$swal({
         title: 'Tem certeza?',
@@ -65,9 +65,9 @@ export default {
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Sim, excluir'
       }).then(() => {
-        DoctorsService.deleteDoctor(id)
+        HealthPlansService.deleteHealthPlan(id)
         $this.$router.go({
-          path: '/'
+          path: '/healthplans'
         })
       })
     }

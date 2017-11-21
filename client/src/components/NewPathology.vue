@@ -1,50 +1,45 @@
 <template>
-  <div class="doctors">
-    <h1>Cadastrar Doutor(a)</h1>
+  <div class="pathologies">
+    <h1>Cadastrar Patologia</h1>
     <div class="form">
       <div>
-        <input type="text" name="name" placeholder="Fulano de Tal" v-model="name">
+        <input type="text" name="cid" placeholder="E015" v-model="cid">
       </div>
       <div>
-        <input type="email" name="email" placeholder="fulano@host.com" v-model="email">
-      </div>
-      <div>
-        <input type="text" name="crfa" placeholder="ABC-123" v-model="crfa">
+        <input type="text" name="description" placeholder="Diabetes" v-model="description">
       </div>
       <div>
         <label for="status">Status</label><br>
         <input id="status" type="checkbox" name="status" v-model="status">
       </div>
        <div>
-        <button type="submit" class="btn" @click="addDoctor">Cadastrar Doutor(a)</button>
+        <button type="submit" class="btn" @click="addPathology">Cadastrar Patologia</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import DoctorsService from '@/services/DoctorsService'
+import PathologiesService from '@/services/PathologiesService.js'
 
 export default {
-  name: 'NewDoctor',
+  name: 'NewPathology',
   data () {
     return {
-      name: '',
-      email: '',
-      crfa: '',
-      status: 1
+      cid: '',
+      description: '',
+      status: ''
     }
   },
   methods: {
-    async addDoctor () {
-      await DoctorsService.addDoctor({
-        name: this.name,
-        email: this.email,
-        crfa: this.crfa,
+    async addPathology () {
+      await PathologiesService.addPathology({
+        cid: this.cid,
+        description: this.description,
         status: this.status
       })
 
-      this.$router.push({ name: 'Doctors' })
+      this.$router.push({ name: 'Pathologies' })
     }
   }
 }

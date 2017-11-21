@@ -1,59 +1,57 @@
 <template>
-  <div id="doctors">
-    <h1>Doutores(as)</h1>
-    <div v-if="doctors.length > 0" class="table-wrap">
+  <div id="pathologies">
+    <h1>Patologias</h1>
+    <div v-if="pathologies.length > 0" class="table-wrap">
       <div>
-        <router-link v-bind:to="{ name: 'NewDoctor' }">Cadastrar Doutor(a)</router-link>
+        <router-link v-bind:to="{ name: 'NewPathology' }">Cadastrar Patologia</router-link>
       </div>
       <table>
         <tr>
           <td>id</td>
-          <td>nome</td>
-          <td>email</td>
-          <td>crfa</td>
+          <td>cid</td>
+          <td>description</td>
           <td>status</td>
           <td>ações</td>
         </tr>
-        <tr v-for="doctor in doctors">
-          <td>{{ doctor._id }}</td>
-          <td>{{ doctor.name }}</td>
-          <td>{{ doctor.email }}</td>
-          <td>{{ doctor.crfa }}</td>
-          <td>{{ doctor.status ? 'Ativo' : 'Inativo' }}</td>
+        <tr v-for="pathology in pathologies">
+          <td>{{ pathology._id }}</td>
+          <td>{{ pathology.cid }}</td>
+          <td>{{ pathology.description }}</td>
+          <td>{{ pathology.status ? 'Ativo' : 'Inativo' }}</td>
           <td>
-            <router-link v-bind:to="{ name: 'EditDoctor', params: { id: doctor._id } }">Alterar</router-link> |
-            <a href="#" @click="deleteDoctor(doctor._id)">Excluir</a>
+            <router-link v-bind:to="{ name: 'EditPathology', params: { id: pathology._id } }">Alterar</router-link> |
+            <a href="#" @click="deletePathology(pathology._id)">Excluir</a>
           </td>
         </tr>
       </table>
     </div>
 
     <div v-else>
-      Não há doutores(as) cadastradas<br /><br />
-      <router-link v-bind:to="{ name: 'NewDoctor' }" class="btn">Cadastrar Doutor(a)</router-link>
+      Não há Patologias cadastrados<br /><br />
+      <router-link v-bind:to="{ name: 'NewPatient' }" class="btn">Cadastrar Patologia</router-link>
     </div>
   </div>
 </template>
 
 <script>
-import DoctorsService from '@/services/DoctorsService.js'
+import PathologiesService from '@/services/PathologiesService.js'
 
 export default {
-  name: 'Doctors',
+  name: 'Pathologies',
   data () {
     return {
-      doctors: []
+      pathologies: []
     }
   },
   mounted () {
-    this.getDoctors()
+    this.getPathologies()
   },
   methods: {
-    async getDoctors () {
-      const response = await DoctorsService.fetchDoctors()
-      this.doctors = response.data.doctors
+    async getPathologies () {
+      const response = await PathologiesService.fetchPathologies()
+      this.pathologies = response.data.pathologies
     },
-    async deleteDoctor (id) {
+    async deletePathology (id) {
       const $this = this
       $this.$swal({
         title: 'Tem certeza?',
@@ -65,9 +63,9 @@ export default {
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Sim, excluir'
       }).then(() => {
-        DoctorsService.deleteDoctor(id)
+        PathologiesService.deletePathology(id)
         $this.$router.go({
-          path: '/'
+          path: '/pathologies'
         })
       })
     }

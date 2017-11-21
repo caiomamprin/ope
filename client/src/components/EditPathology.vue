@@ -1,62 +1,56 @@
 <template>
-  <div class="doctors">
-    <h1>Alterar Doutor(a)</h1>
+  <div class="pathologies">
+    <h1>Alterar Patologia</h1>
     <div class="form">
       <div>
-        <input type="text" name="name" placeholder="Fulano de Tal" v-model="name">
+        <input type="text" name="cid" placeholder="E015" v-model="cid">
       </div>
       <div>
-        <input type="email" name="email" placeholder="fulano@host.com" v-model="email">
-      </div>
-      <div>
-        <input type="text" name="crfa" placeholder="ABC-123" v-model="crfa">
+        <input type="text" name="description" placeholder="Diabetes" v-model="description">
       </div>
       <div>
         <label for="status">Status</label><br>
         <input id="status" type="checkbox" name="status" v-model="status">
       </div>
        <div>
-        <button type="submit" class="btn" @click="updateDoctor">Atualizar Doutor(a)</button>
+        <button type="submit" class="btn" @click="updatePathology">Atualizar Patologia</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import DoctorsService from '@/services/DoctorsService'
+import PathologiesService from '@/services/PathologiesService.js'
 
 export default {
-  name: 'EditDoctor',
+  name: 'EditPathology',
   data () {
     return {
-      name: '',
-      email: '',
-      crfa: '',
+      cid: '',
+      description: '',
       status: 1
     }
   },
   mounted () {
-    this.getDoctor()
+    this.getPathology()
   },
   methods: {
-    async getDoctor () {
-      const response = await DoctorsService.getDoctor({
+    async getPathology () {
+      const response = await PathologiesService.getPathology({
         id: this.$route.params.id
       })
-      this.name = response.data.name
-      this.email = response.data.email
-      this.crfa = response.data.crfa
+      this.cid = response.data.cid
+      this.description = response.data.description
       this.status = response.data.status
     },
-    async updateDoctor () {
-      await DoctorsService.updateDoctor({
+    async updatePathology () {
+      await PathologiesService.updatePathology({
         id: this.$route.params.id,
-        name: this.name,
-        email: this.email,
-        crfa: this.crfa,
+        cid: this.cid,
+        description: this.description,
         status: this.status
       })
-      this.$router.push({ name: 'Doctors' })
+      this.$router.push({ name: 'Pathologies' })
     }
   }
 }
