@@ -4,7 +4,7 @@ const router = express.Router();
 const Consultation = require('../models/Consultation')
 
 router.get('/', (req, res) => {
-  Consultation.find({}, 'consultationType privateConsultationFee status created_at updated_at', (err, consultations) => {
+  Consultation.find({}, (err, consultations) => {
     if(err)
       throw err
     
@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   let db = req.db
-  Consultation.findById(req.params.id, 'consultationType privateConsultationFee status created_at updated_at', (err, consultation) => {
+  Consultation.findById(req.params.id, (err, consultation) => {
     if(err)
       throw err
 
@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   let db = req.db
-  Consultation.findById(req.params.id, 'consultationType privateConsultationFee status created_at updated_at', (err, consultation) => {
+  Consultation.findById(req.params.id, (err, consultation) => {
     if(err)
       throw err
 

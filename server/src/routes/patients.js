@@ -5,23 +5,20 @@ const Patient = require('../models/Patient')
 const HealthPlan = require('../models/HealthPlan')
 
 router.get('/', (req, res) => {
-  Patient.find({}, 'name cpf birthDate healthplan status created_at updated_at', (err, patients) => {
+  Patient.find({}).populate('healthplan').exec((err, patients) => {
     if(err)
       throw err
     
-    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-    res.setHeader("Pragma", "no-cache");
-    res.setHeader("Expires", 0);
+    
     res.send({
       patients: patients
     })
-  }).sort({ _id: - 1 })
+  })
 })
-
 
 router.get('/:id', (req, res) => {
   let db = req.db
-  Patient.findById(req.params.id, 'name cpf birthDate healthplan status created_at updated_at', (err, patient) => {
+  Patient.findById(req.params.id).populate('healthplan').exec((err, patient) => {
     if(err)
       throw err
 
@@ -59,7 +56,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   let db = req.db
-  Patient.findById(req.params.id, 'name cpf birthDate healthplan status', (err, patient) => {
+  Patient.findById(req.params.id, (err, patient) => {
     if(err)
       throw err
 

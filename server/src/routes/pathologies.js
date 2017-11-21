@@ -4,7 +4,7 @@ const router = express.Router();
 const Pathology = require('../models/Pathology')
 
 router.get('/', (req, res) => {
-  Pathology.find({}, 'cid description status created_at updated_at', (err, pathologies) => {
+  Pathology.find({}, (err, pathologies) => {
     if(err)
       throw err
 
@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   let db = req.db
-  Pathology.findById(req.params.id, 'cid description status created_at updated_at', (err, pathology) => {
+  Pathology.findById(req.params.id, (err, pathology) => {
     if(err)
       throw err
 
@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   let db = req.db
-  Pathology.findById(req.params.id, 'cid description status created_at updated_at', (err, pathology) => {
+  Pathology.findById(req.params.id, (err, pathology) => {
     if(err)
       throw err
 

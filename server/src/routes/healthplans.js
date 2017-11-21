@@ -4,7 +4,7 @@ const router = express.Router();
 const HealthPlan = require('../models/HealthPlan')
 
 router.get('/', (req, res) => {
-  HealthPlan.find({}, 'businessName cnpj consultationFee status created_at updated_at', (err, healthplans) => {
+  HealthPlan.find({}, (err, healthplans) => {
     if(err)
       throw err
 
@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   let db = req.db
-  HealthPlan.findById(req.params.id, 'businessName cnpj consultationFee status created_at updated_at', (err, healthplan) => {
+  HealthPlan.findById(req.params.id, (err, healthplan) => {
     if(err)
       throw err
 
@@ -56,7 +56,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   let db = req.db
-  HealthPlan.findById(req.params.id, 'businessName cnpj consultationFee status created_at updated_at', (err, healthplan) => {
+  HealthPlan.findById(req.params.id, (err, healthplan) => {
     if(err)
       throw err
 

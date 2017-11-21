@@ -4,7 +4,7 @@ const router = express.Router();
 const Calendar = require('../models/Calendar')
 
 router.get('/', (req, res) => {
-  Calendar.find({}, 'consultation patient doctor consultationDate status created_at updated_at', (err, calendars) => {
+  Calendar.find({}, (err, calendars) => {
     if(err)
       throw err
 
@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   let db = req.db
-  Calendar.findById(req.params.id, 'consultation patient doctor consultationDate status created_at updated_at', (err, calendar) => {
+  Calendar.findById(req.params.id, (err, calendar) => {
     if(err)
       throw err
 
@@ -58,7 +58,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   let db = req.db
-  Calendar.findById(req.params.id, 'consultation patient doctor consultationDate status created_at updated_at', (err, calendar) => {
+  Calendar.findById(req.params.id, (err, calendar) => {
     if(err)
       throw err
 
