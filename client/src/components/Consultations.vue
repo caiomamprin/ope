@@ -1,57 +1,57 @@
 <template>
-  <div id="pathologies">
-    <h1>Patologias</h1>
-    <div v-if="pathologies.length > 0" class="table-wrap">
+  <div id="consultations">
+    <h1>Consultas</h1>
+    <div v-if="consultations.length > 0" class="table-wrap">
       <div>
-        <router-link v-bind:to="{ name: 'NewPathology' }">Cadastrar Patologia</router-link>
+        <router-link v-bind:to="{ name: 'NewConsultation' }">Cadastrar Consulta</router-link>
       </div>
       <table>
         <tr>
           <td>id</td>
-          <td>cid</td>
-          <td>description</td>
+          <td>tipo de consulta</td>
+          <td>valor da consulta particular</td>
           <td>status</td>
           <td>ações</td>
         </tr>
-        <tr v-for="pathology in pathologies">
-          <td>{{ pathology._id }}</td>
-          <td>{{ pathology.cid }}</td>
-          <td>{{ pathology.description }}</td>
-          <td>{{ pathology.status ? 'Ativo' : 'Inativo' }}</td>
+        <tr v-for="consultation in consultations">
+          <td>{{ consultation._id }}</td>
+          <td>{{ consultation.consultationType }}</td>
+          <td>{{ consultation.privateConsultationFee }}</td>
+          <td>{{ consultation.status ? 'Ativo' : 'Inativo' }}</td>
           <td>
-            <router-link v-bind:to="{ name: 'EditPathology', params: { id: pathology._id } }">Alterar</router-link> |
-            <a href="#" @click="deletePathology(pathology._id)">Excluir</a>
+            <router-link v-bind:to="{ name: 'EditConsultation', params: { id: consultation._id } }">Alterar</router-link> |
+            <a href="#" @click="deleteConsultation(consultation._id)">Excluir</a>
           </td>
         </tr>
       </table>
     </div>
 
     <div v-else>
-      Não há Patologias cadastradas<br /><br />
-      <router-link v-bind:to="{ name: 'NewPatient' }" class="btn">Cadastrar Patologia</router-link>
+      Não há consultas cadastradas<br /><br />
+      <router-link v-bind:to="{ name: 'NewConsultation' }" class="btn">Cadastrar Consulta</router-link>
     </div>
   </div>
 </template>
 
 <script>
-import PathologiesService from '@/services/PathologiesService.js'
+import ConsultationsService from '@/services/ConsultationsService.js'
 
 export default {
-  name: 'Pathologies',
+  name: 'Consultations',
   data () {
     return {
-      pathologies: []
+      consultations: []
     }
   },
   mounted () {
-    this.getPathologies()
+    this.getConsultations()
   },
   methods: {
-    async getPathologies () {
-      const response = await PathologiesService.fetchPathologies()
-      this.pathologies = response.data.pathologies
+    async getConsultations () {
+      const response = await ConsultationsService.fetchConsultations()
+      this.consultations = response.data.consultations
     },
-    async deletePathology (id) {
+    async deleteConsultation (id) {
       const $this = this
       $this.$swal({
         title: 'Tem certeza?',
@@ -63,10 +63,8 @@ export default {
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Sim, excluir'
       }).then(() => {
-        PathologiesService.deletePathology(id)
-        $this.$router.go({
-          path: '/pathologies'
-        })
+        ConsultationsService.deleteConsultation(id)
+        $this.$router.go('consultations')
       })
     }
   }

@@ -13,10 +13,14 @@ import EditPatient from '@/components/EditPatient'
 import Pathologies from '@/components/Pathologies'
 import NewPathology from '@/components/NewPathology'
 import EditPathology from '@/components/EditPathology'
+import Consultations from '@/components/Consultations'
+import NewConsultation from '@/components/NewConsultation'
+import EditConsultation from '@/components/EditConsultation'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -82,6 +86,21 @@ export default new Router({
       path: '/pathologies/:id',
       name: 'EditPathology',
       component: EditPathology
+    },
+    {
+      path: '/consultations',
+      name: 'Consultations',
+      component: Consultations
+    },
+    {
+      path: '/consultations/new',
+      name: 'NewConsultation',
+      component: NewConsultation
+    },
+    {
+      path: '/consultations/:id',
+      name: 'EditConsultation',
+      component: EditConsultation
     }
   ]
 })

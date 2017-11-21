@@ -9,7 +9,7 @@ Projeto de OPE - ADS
   npm install && npm start
 ```
 
-- Acesse a paste `client` e rode o seguinte comando:
+- Acesse a pasta `client` e rode o seguinte comando:
 ```sh
   npm install && npm run dev
 ```

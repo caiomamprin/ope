@@ -11,11 +11,14 @@
       <div>
         <input type="string" name="birthDate" placeholder="21/01/1941" v-model="patient.birthDate">
       </div>
-      <div>
+      <div v-if="healthplans.length > 0">
         <select v-model="patient.healthplan">
           <option value="" selected>Selecione o convenio do Paciente</option>
           <option v-for="healthplan in healthplans" :value="healthplan._id">{{ healthplan.businessName }}</option>
         </select>
+      </div>
+      <div v-else>
+        Não há convênios cadastrados
       </div>
       <div>
         <label for="status">Status</label><br>

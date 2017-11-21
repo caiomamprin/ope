@@ -4,6 +4,7 @@
     <router-link class="btn" v-bind:to="{ name: 'HealthPlans' }">Convênios</router-link>
     <router-link class="btn" v-bind:to="{ name: 'Doctors' }">Doutores(as)</router-link>
     <router-link class="btn" v-bind:to="{ name: 'Patients' }">Pacientes</router-link>
+    <router-link class="btn" v-bind:to="{ name: 'Consultations' }">Consultas</router-link>
   </div>
 </template>
 
